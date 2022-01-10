@@ -3,6 +3,7 @@ version: 2.1
 jobs:
   build:
     executor: node
+    working_directory: ~/node_circleci
     steps:
       - checkout
       - run: npm install
