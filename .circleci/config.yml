@@ -10,6 +10,13 @@ jobs:
     executor: node
     steps:
       - run: npm run test
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
 executors:
   node:
     resource_class: small
