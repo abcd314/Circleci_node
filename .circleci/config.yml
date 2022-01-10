@@ -1,25 +1,14 @@
 version: 2.1
-
+orbs:
+  node: circleci/node@4.7.0
 jobs:
   build:
-    working_directory: ~/circleci-node
-    docker:
-      - image: "circleci/node"
+    executor:
+      name: node/default
+      tag: '10.4'
     steps:
       - checkout
-      - run: npm install
-  test:
-    working_directory: ~/circleci-node
-    docker:
-      - image: "circleci/node"
-    steps:
-      - checkout
+      - node/with-cache:
+          steps:
+            - run: npm install
       - run: npm run test
-
-workflows:
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
