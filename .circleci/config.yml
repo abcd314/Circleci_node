@@ -9,6 +9,7 @@ jobs:
       - run: npm install
   test:
     executor: node
+    working_directory: ~/node_circleci
     steps:
       - run: npm run test
 workflows:
