@@ -9,8 +9,9 @@ jobs:
       - run: npm install
   test:
     executor: node
-    working_directory: ~/node_circleci
+    working_directory: ~/node_circleci/tests
     steps:
+      - path: ~/node_circleci
       - run: npm run test
 workflows:
   build_and_test:
