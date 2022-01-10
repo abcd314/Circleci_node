@@ -1,14 +1,17 @@
 version: 2.1
-orbs:
-  node: circleci/node@4.7.0
+
 jobs:
   build:
-    executor:
-      name: node/default
-      tag: '10.4'
+    executor: node
     steps:
       - checkout
-      - node/with-cache:
-          steps:
-            - run: npm install
+      - run: npm install
+  test:
+    executor: node
+    steps:
       - run: npm run test
+executors:
+  node:
+    resource_class: small
+    docker:
+      - image: cimg/node:14.18 # Should be same major version as .nvmrc
